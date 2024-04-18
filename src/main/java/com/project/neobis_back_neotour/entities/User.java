@@ -6,42 +6,51 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
-import jakarta.validation.constraints.Min;
-import lombok.Data;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
-import java.sql.Timestamp;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Builder;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+
+import java.time.LocalDateTime;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @Column(name = "username", nullable = false, unique = true, length = 30)
-    private String username;
-
-    @Column(name = "email", nullable = false, unique = true, length = 60)
-    private String email;
-
-    @Min(8)
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @Column(name = "first_name", nullable = false, length = 30)
-    private String firstName;
-
-    @Column(name = "last_name", nullable = false, length = 30)
-    private String lastName;
+    String username;
 
     @Column(name = "image_url", nullable = false)
-    private String imageUrl;
+    String image_url;
 
     @Column(name = "created_at", nullable = false)
-    private Timestamp createdAt;
+    LocalDateTime created_at;
 
     @Column(name = "updated_at", nullable = false)
-    private Timestamp updatedAt;
+    LocalDateTime updated_at;
+
+    @PrePersist
+    protected void onCreate() {
+        this.created_at = LocalDateTime.now();
+        this.updated_at = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updated_at = LocalDateTime.now();
+    }
 }
