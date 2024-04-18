@@ -25,7 +25,6 @@ public class UserServiceImpl implements UserService {
         User user = User.builder()
                 .username(userDto.getUsername())
                 .image_url(userDto.getImage_url())
-                .created_at(userDto.getCreated_at())
                 .build();
 
         User savedUser = userRepository.save(user);
@@ -56,7 +55,6 @@ public class UserServiceImpl implements UserService {
 
         user.setUsername(userDto.getUsername());
         user.setImage_url(userDto.getImage_url());
-        user.setUpdated_at(userDto.getUpdated_at());
 
         User updatedUser = userRepository.save(convertToUserEntity(user));
         return convertToUserDto(updatedUser);
