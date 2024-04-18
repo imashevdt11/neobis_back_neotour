@@ -10,5 +10,7 @@ public final class EndpointConstants {
 
     public static final String REVIEW_ENDPOINT = API_PREFIX + "/reviews";
 
+    public static final String BOOKING_ENDPOINT = API_PREFIX + "/bookings";
+
     private EndpointConstants() {}
 }
