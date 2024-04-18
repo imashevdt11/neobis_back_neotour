@@ -20,7 +20,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
     public ErrorResponse handleProductException(UserNotFoundException ex) {
-        logger.error("ProductNotFoundException: ({})", ex.getMessage());
+        logger.error("UserNotFoundException: ({})", ex.getMessage());
+        return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+    }
+
+    @ExceptionHandler(TourNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ErrorResponse handleProductException(TourNotFoundException ex) {
+        logger.error("TourNotFoundException: ({})", ex.getMessage());
         return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
     }
 
