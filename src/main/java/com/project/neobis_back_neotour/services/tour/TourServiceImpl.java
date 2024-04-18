@@ -35,20 +35,20 @@ public class TourServiceImpl implements TourService {
                 .build();
 
         Tour savedTour = tourRepository.save(tour);
-        return convertToUserDto(savedTour);
+        return convertToTourDto(savedTour);
     }
 
     @Override
     public List<TourDto> getAllTours() {
         List<Tour> tourList = tourRepository.findAll();
-        return tourList.stream().map(this::convertToUserDto).toList();
+        return tourList.stream().map(this::convertToTourDto).toList();
     }
 
     @Override
     public TourDto getTourById(Long id) {
         Tour tour = tourRepository.findById(id)
                 .orElseThrow(() -> new TourNotFoundException("Tour not found with id: " + id, HttpStatus.NOT_FOUND.value()));
-        return convertToUserDto(tour);
+        return convertToTourDto(tour);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class TourServiceImpl implements TourService {
         tour.setContinent(tourDto.getCountry());
 
         Tour updatedTour = tourRepository.save(convertToTourEntity(tour));
-        return convertToUserDto(updatedTour);
+        return convertToTourDto(updatedTour);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class TourServiceImpl implements TourService {
         }
     }
 
-    public TourDto convertToUserDto(Tour tour) {
+    public TourDto convertToTourDto(Tour tour) {
         return TourDto.builder()
                 .id(tour.getId())
                 .name(tour.getName())
