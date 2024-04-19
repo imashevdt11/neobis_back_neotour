@@ -51,6 +51,17 @@ public class TourServiceImpl implements TourService {
         return convertToTourDto(tour);
     }
 
+
+    @Override
+    public List<TourDto> getToursByContinent(String continent) {
+        List<Tour> tourList = tourRepository.findByContinent(continent);
+
+        if (tourList.isEmpty()) {
+            throw new TourNotFoundException("Tours in " + continent + " not found", HttpStatus.NOT_FOUND.value());
+        }
+        return tourList.stream().map(this::convertToTourDto).toList();
+    }
+
     @Override
     public TourDto updateTour(Long id, TourDto tourDto) {
 

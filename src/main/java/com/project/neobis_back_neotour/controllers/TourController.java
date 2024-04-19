@@ -82,6 +82,17 @@ public class TourController {
         return ResponseEntity.ok(tour);
     }
 
+//    @Operation(
+//            description = "Get tours by continent",
+//            responses = @ApiResponse(responseCode = "200", description = "List of tours retrieved successfully")
+//    )
+
+    @GetMapping("/continent/{continent}")
+    public ResponseEntity<List<TourDto>> getToursByContinent(@PathVariable String continent) {
+        List<TourDto> tourList = tourService.getToursByContinent(continent);
+        return ResponseEntity.ok(tourList);
+    }
+
     @Operation(
             description = "Update tour by ID",
             responses = {
