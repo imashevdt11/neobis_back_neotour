@@ -63,6 +63,18 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
+    public List<TourDto> getPopularTours() {
+        List<Tour> tourList = tourRepository.findPopularTours();
+        return tourList.stream().map(this::convertToTourDto).toList();
+    }
+
+    @Override
+    public List<TourDto> getMostViewedTours() {
+        List<Tour> tourList = tourRepository.findMostViewedTours();
+        return tourList.stream().map(this::convertToTourDto).toList();
+    }
+
+    @Override
     public TourDto updateTour(Long id, TourDto tourDto) {
 
         TourDto tour = getTourById(id);

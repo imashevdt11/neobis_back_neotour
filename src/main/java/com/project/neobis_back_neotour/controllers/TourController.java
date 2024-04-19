@@ -93,6 +93,18 @@ public class TourController {
         return ResponseEntity.ok(tourList);
     }
 
+    @GetMapping("/popular")
+    public ResponseEntity<List<TourDto>> getPopularTours() {
+        List<TourDto> popularTours = tourService.getPopularTours();
+        return ResponseEntity.ok(popularTours);
+    }
+
+    @GetMapping("/most-viewed")
+    public ResponseEntity<List<TourDto>> getMostViewedTours() {
+        List<TourDto> mostViewedTours = tourService.getMostViewedTours();
+        return ResponseEntity.ok(mostViewedTours);
+    }
+
     @Operation(
             description = "Update tour by ID",
             responses = {

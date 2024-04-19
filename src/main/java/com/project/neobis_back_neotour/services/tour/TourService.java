@@ -14,6 +14,10 @@ public interface TourService {
 
     List<TourDto> getToursByContinent(String continent);
 
+    List<TourDto> getPopularTours();
+
+    List<TourDto> getMostViewedTours();
+
     TourDto updateTour(Long id, TourDto tourDto);
 
     void deleteTour(Long id);
