@@ -82,6 +82,12 @@ public class ReviewController {
         return ResponseEntity.ok(review);
     }
 
+    @GetMapping("/tour/{tourId}")
+    public ResponseEntity<List<ReviewDto>> getReviewsByTourId(@PathVariable Long tourId) {
+        List<ReviewDto> reviews = reviewService.getReviewsByTourId(tourId);
+        return ResponseEntity.ok(reviews);
+    }
+
     @Operation(
             description = "Update review by ID",
             responses = {

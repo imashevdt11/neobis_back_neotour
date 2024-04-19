@@ -48,6 +48,12 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public List<ReviewDto> getReviewsByTourId(Long tourId) {
+        List<Review> reviewList = reviewRepository.findByTourId(tourId);
+        return reviewList.stream().map(this::convertToReviewDto).toList();
+    }
+
+    @Override
     public ReviewDto updateReview(Long id, ReviewDto reviewDto) {
 
         ReviewDto review = getReviewById(id);
