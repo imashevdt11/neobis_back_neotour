@@ -33,6 +33,7 @@ public class TourServiceImpl implements TourService {
                 .country(tourDto.getCountry())
                 .continent(tourDto.getContinent())
                 .season(tourDto.getSeason())
+                .views(tourDto.getViews())
                 .build();
 
         Tour savedTour = tourRepository.save(tour);
