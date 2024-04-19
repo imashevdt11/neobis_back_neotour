@@ -32,6 +32,7 @@ public class TourServiceImpl implements TourService {
                 .city(tourDto.getCity())
                 .country(tourDto.getCountry())
                 .continent(tourDto.getContinent())
+                .season(tourDto.getSeason())
                 .build();
 
         Tour savedTour = tourRepository.save(tour);
@@ -89,6 +90,7 @@ public class TourServiceImpl implements TourService {
         tour.setPrice(tourDto.getPrice());
         tour.setCity(tourDto.getCity());
         tour.setContinent(tourDto.getCountry());
+        tour.setSeason(tourDto.getSeason());
 
         Tour updatedTour = tourRepository.save(convertToTourEntity(tour));
         return convertToTourDto(updatedTour);
@@ -115,6 +117,7 @@ public class TourServiceImpl implements TourService {
                 .city(tour.getCity())
                 .country(tour.getCountry())
                 .continent(tour.getContinent())
+                .season(tour.getSeason())
                 .created_at(tour.getCreated_at())
                 .updated_at(tour.getUpdated_at())
                 .build();
@@ -130,6 +133,7 @@ public class TourServiceImpl implements TourService {
                 .city(tourDto.getCity())
                 .country(tourDto.getCountry())
                 .continent(tourDto.getContinent())
+                .season(tourDto.getSeason())
                 .created_at(tourDto.getCreated_at())
                 .updated_at(tourDto.getUpdated_at())
                 .build();

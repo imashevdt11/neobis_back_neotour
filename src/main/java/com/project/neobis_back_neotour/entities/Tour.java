@@ -46,6 +46,9 @@ public class Tour {
     @Column(name = "continent", nullable = false, length = 30)
     String continent;
 
+    @Column(name = "season", nullable = false, length = 30)
+    String season;
+
     @Column(name = "views")
     Integer views;
 

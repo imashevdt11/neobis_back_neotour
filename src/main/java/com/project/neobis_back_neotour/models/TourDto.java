@@ -41,6 +41,9 @@ public class TourDto {
     @NotBlank(message = "Continent is required")
     String continent;
 
+    @NotBlank(message = "Season is required")
+    String season;
+
     Integer views;
 
     LocalDateTime created_at;
