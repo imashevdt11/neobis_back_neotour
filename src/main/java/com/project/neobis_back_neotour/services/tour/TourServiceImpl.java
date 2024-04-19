@@ -131,6 +131,7 @@ public class TourServiceImpl implements TourService {
                 .country(tour.getCountry())
                 .continent(tour.getContinent())
                 .season(tour.getSeason())
+                .views(tour.getViews())
                 .created_at(tour.getCreated_at())
                 .updated_at(tour.getUpdated_at())
                 .build();
@@ -147,6 +148,7 @@ public class TourServiceImpl implements TourService {
                 .country(tourDto.getCountry())
                 .continent(tourDto.getContinent())
                 .season(tourDto.getSeason())
+                .views(tourDto.getViews())
                 .created_at(tourDto.getCreated_at())
                 .updated_at(tourDto.getUpdated_at())
                 .build();
