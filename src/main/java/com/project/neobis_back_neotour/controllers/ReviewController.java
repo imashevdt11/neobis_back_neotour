@@ -82,6 +82,10 @@ public class ReviewController {
         return ResponseEntity.ok(review);
     }
 
+    @Operation(
+            description = "Get all reviews for tour",
+            responses = @ApiResponse(responseCode = "200", description = "List of reviews for tour retrieved successfully")
+    )
     @GetMapping("/tour/{tourId}")
     public ResponseEntity<List<ReviewDto>> getReviewsByTourId(@PathVariable Long tourId) {
         List<ReviewDto> reviews = reviewService.getReviewsByTourId(tourId);

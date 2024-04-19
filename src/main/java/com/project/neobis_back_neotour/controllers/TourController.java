@@ -88,24 +88,48 @@ public class TourController {
 //            responses = @ApiResponse(responseCode = "200", description = "List of tours retrieved successfully")
 //    )
 
+    @Operation(
+            description = "Get tours by continent",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "List of tours retrieved successfully"),
+                    @ApiResponse(responseCode = "404", description = "No tours found with specified continent"),
+                    @ApiResponse(responseCode = "500", description = "Internal server error")
+            }
+    )
     @GetMapping("/continent/{continent}")
     public ResponseEntity<List<TourDto>> getToursByContinent(@PathVariable String continent) {
         List<TourDto> tourList = tourService.getToursByContinent(continent);
         return ResponseEntity.ok(tourList);
     }
 
+    @Operation(
+            description = "Get popular tours",
+            responses = @ApiResponse(responseCode = "200", description = "List of popular tours retrieved successfully")
+    )
     @GetMapping("/popular")
     public ResponseEntity<List<TourDto>> getPopularTours() {
         List<TourDto> popularTours = tourService.getPopularTours();
         return ResponseEntity.ok(popularTours);
     }
 
+    @Operation(
+            description = "Get most viewed tours",
+            responses = @ApiResponse(responseCode = "200", description = "List of most viewed tours retrieved successfully")
+    )
     @GetMapping("/most-viewed")
     public ResponseEntity<List<TourDto>> getMostViewedTours() {
         List<TourDto> mostViewedTours = tourService.getMostViewedTours();
         return ResponseEntity.ok(mostViewedTours);
     }
 
+    @Operation(
+            description = "Get tours by current season",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "List of tours retrieved successfully"),
+                    @ApiResponse(responseCode = "404", description = "No tours found with specified season"),
+                    @ApiResponse(responseCode = "500", description = "Internal server error")
+            }
+    )
     @GetMapping("/recommended")
     public ResponseEntity<List<TourDto>> getRecommended() {
         String currentSeason = getCurrentSeason();
