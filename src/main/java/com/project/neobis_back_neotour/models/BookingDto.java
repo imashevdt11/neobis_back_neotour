@@ -33,6 +33,8 @@ public class BookingDto {
     @DecimalMin(value = "1")
     Integer number_of_tourists;
 
+    String comment;
+
     BigDecimal total_price;
 
     LocalDateTime booking_date;

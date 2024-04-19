@@ -28,6 +28,7 @@ public class BookingServiceImpl implements BookingService {
                 .tour(bookingDto.getTour())
                 .number_of_tourists(bookingDto.getNumber_of_tourists())
                 .total_price(bookingDto.getTotal_price())
+                .comment(bookingDto.getComment())
                 .build();
         Booking savedBooking = bookingRepository.save(review);
         return convertToBookingDto(savedBooking);

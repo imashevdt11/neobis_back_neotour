@@ -36,6 +36,9 @@ public class Booking {
     @Column(name = "total_price", nullable = false)
     BigDecimal total_price;
 
+    @Column(name = "comment")
+    String comment;
+
     @Column(name = "created_at", nullable = false)
     LocalDateTime created_at;
 
