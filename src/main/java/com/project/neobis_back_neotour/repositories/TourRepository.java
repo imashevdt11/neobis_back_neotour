@@ -22,4 +22,6 @@ public interface TourRepository extends JpaRepository<Tour, Long> {
 
     @Query("SELECT t FROM Tour t ORDER BY t.views DESC LIMIT 5")
     List<Tour> findMostViewedTours();
+
+    List<Tour> findBySeason(String season);
 }

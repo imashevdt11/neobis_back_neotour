@@ -64,6 +64,16 @@ public class TourServiceImpl implements TourService {
     }
 
     @Override
+    public List<TourDto> getRecommendedTours(String season) {
+        List<Tour> tourList = tourRepository.findBySeason(season);
+
+        if (tourList.isEmpty()) {
+            throw new TourNotFoundException(season + " tours not found", HttpStatus.NOT_FOUND.value());
+        }
+        return tourList.stream().map(this::convertToTourDto).toList();
+    }
+
+    @Override
     public List<TourDto> getPopularTours() {
         List<Tour> tourList = tourRepository.findPopularTours();
         return tourList.stream().map(this::convertToTourDto).toList();
@@ -95,6 +105,8 @@ public class TourServiceImpl implements TourService {
         Tour updatedTour = tourRepository.save(convertToTourEntity(tour));
         return convertToTourDto(updatedTour);
     }
+
+
 
     @Override
     public void deleteTour(Long id) {

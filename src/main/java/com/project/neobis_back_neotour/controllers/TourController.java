@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Validated
@@ -103,6 +104,24 @@ public class TourController {
     public ResponseEntity<List<TourDto>> getMostViewedTours() {
         List<TourDto> mostViewedTours = tourService.getMostViewedTours();
         return ResponseEntity.ok(mostViewedTours);
+    }
+
+    @GetMapping("/recommended")
+    public ResponseEntity<List<TourDto>> getRecommended() {
+        String currentSeason = getCurrentSeason();
+        List<TourDto> tourList = tourService.getRecommendedTours(currentSeason);
+        return ResponseEntity.ok(tourList);
+    }
+
+    private String getCurrentSeason() {
+        int month = LocalDate.now().getMonthValue();
+        return switch (month) {
+            case 12, 1, 2 -> "Winter";
+            case 3, 4, 5 -> "Spring";
+            case 6, 7, 8 -> "Summer";
+            case 9, 10, 11 -> "Autumn";
+            default -> "Unknown";
+        };
     }
 
     @Operation(

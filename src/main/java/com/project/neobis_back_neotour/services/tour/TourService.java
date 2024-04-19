@@ -18,6 +18,8 @@ public interface TourService {
 
     List<TourDto> getMostViewedTours();
 
+    List<TourDto> getRecommendedTours(String season);
+
     TourDto updateTour(Long id, TourDto tourDto);
 
     void deleteTour(Long id);
