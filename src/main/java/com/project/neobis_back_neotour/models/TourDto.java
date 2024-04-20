@@ -28,7 +28,6 @@ public class TourDto {
     @NotBlank(message = "Image is required")
     String image_url;
 
-    @NotBlank(message = "Price is required")
     @Positive(message = "Price must be greater than zero")
     BigDecimal price;
 

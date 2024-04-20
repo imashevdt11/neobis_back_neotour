@@ -83,11 +83,6 @@ public class TourController {
         return ResponseEntity.ok(tour);
     }
 
-//    @Operation(
-//            description = "Get tours by continent",
-//            responses = @ApiResponse(responseCode = "200", description = "List of tours retrieved successfully")
-//    )
-
     @Operation(
             description = "Get tours by continent",
             responses = {
