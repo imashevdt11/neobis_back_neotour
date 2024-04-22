@@ -1,12 +1,10 @@
 package com.project.neobis_back_neotour.models;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -27,9 +25,6 @@ public class TourDto {
 
     @NotBlank(message = "Image is required")
     String image_url;
-
-    @Positive(message = "Price must be greater than zero")
-    BigDecimal price;
 
     @NotBlank(message = "City is required")
     String city;

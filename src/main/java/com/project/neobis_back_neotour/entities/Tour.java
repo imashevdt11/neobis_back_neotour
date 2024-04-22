@@ -9,7 +9,6 @@ import lombok.Builder;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -33,9 +32,6 @@ public class Tour {
 
     @Column(name = "image_url", nullable = false)
     String image_url;
-
-    @Column(name = "price", nullable = false)
-    BigDecimal price;
 
     @Column(name = "city", nullable = false, length = 30)
     String city;

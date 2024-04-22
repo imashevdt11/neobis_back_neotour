@@ -27,7 +27,6 @@ public class BookingServiceImpl implements BookingService {
                 .phone_number(bookingDto.getPhone_number())
                 .tour(bookingDto.getTour())
                 .number_of_tourists(bookingDto.getNumber_of_tourists())
-                .total_price(bookingDto.getTotal_price())
                 .comment(bookingDto.getComment())
                 .build();
         Booking savedBooking = bookingRepository.save(review);
@@ -59,7 +58,6 @@ public class BookingServiceImpl implements BookingService {
         booking.setTour(bookingDto.getTour());
         booking.setPhone_number(bookingDto.getPhone_number());
         booking.setNumber_of_tourists(booking.getNumber_of_tourists());
-        booking.setTotal_price(booking.getTotal_price());
 
         Booking updatedBooking = bookingRepository.save(convertToBookingEntity(booking));
         return convertToBookingDto(updatedBooking);
@@ -81,7 +79,6 @@ public class BookingServiceImpl implements BookingService {
                 .id(booking.getId())
                 .tour(booking.getTour())
                 .booking_date(booking.getBooking_date())
-                .total_price(booking.getTotal_price())
                 .phone_number(booking.getPhone_number())
                 .number_of_tourists(booking.getNumber_of_tourists())
                 .created_at(booking.getCreated_at())
@@ -95,7 +92,6 @@ public class BookingServiceImpl implements BookingService {
                 .phone_number(booking.getPhone_number())
                 .tour(booking.getTour())
                 .booking_date(booking.getBooking_date())
-                .total_price(booking.getTotal_price())
                 .number_of_tourists(booking.getNumber_of_tourists())
                 .created_at(booking.getCreated_at())
                 .updated_at(booking.getUpdated_at())

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -32,9 +31,6 @@ public class Booking {
 
     @Column(name = "phone_number", nullable = false)
     String phone_number;
-
-    @Column(name = "total_price", nullable = false)
-    BigDecimal total_price;
 
     @Column(name = "comment")
     String comment;

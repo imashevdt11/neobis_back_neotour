@@ -28,7 +28,6 @@ public class TourServiceImpl implements TourService {
                 .name(tourDto.getName())
                 .description(tourDto.getDescription())
                 .image_url(tourDto.getImage_url())
-                .price(tourDto.getPrice())
                 .city(tourDto.getCity())
                 .country(tourDto.getCountry())
                 .continent(tourDto.getContinent())
@@ -98,7 +97,6 @@ public class TourServiceImpl implements TourService {
         tour.setName(tourDto.getName());
         tour.setDescription(tourDto.getDescription());
         tour.setImage_url(tourDto.getImage_url());
-        tour.setPrice(tourDto.getPrice());
         tour.setCity(tourDto.getCity());
         tour.setContinent(tourDto.getCountry());
         tour.setSeason(tourDto.getSeason());
@@ -126,7 +124,6 @@ public class TourServiceImpl implements TourService {
                 .name(tour.getName())
                 .description(tour.getDescription())
                 .image_url(tour.getImage_url())
-                .price(tour.getPrice())
                 .city(tour.getCity())
                 .country(tour.getCountry())
                 .continent(tour.getContinent())
@@ -143,7 +140,6 @@ public class TourServiceImpl implements TourService {
                 .name(tourDto.getName())
                 .description(tourDto.getDescription())
                 .image_url(tourDto.getImage_url())
-                .price(tourDto.getPrice())
                 .city(tourDto.getCity())
                 .country(tourDto.getCountry())
                 .continent(tourDto.getContinent())

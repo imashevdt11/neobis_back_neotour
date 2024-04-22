@@ -12,7 +12,6 @@ import lombok.Builder;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -34,8 +33,6 @@ public class BookingDto {
     Integer number_of_tourists;
 
     String comment;
-
-    BigDecimal total_price;
 
     LocalDateTime booking_date;
     LocalDateTime created_at;
