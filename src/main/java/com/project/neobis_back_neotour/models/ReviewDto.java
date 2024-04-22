@@ -3,7 +3,6 @@ package com.project.neobis_back_neotour.models;
 import com.project.neobis_back_neotour.entities.Tour;
 import com.project.neobis_back_neotour.entities.User;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.DecimalMax;
 
@@ -25,10 +24,8 @@ public class ReviewDto {
 
     Long id;
 
-    @NotBlank(message = "Tour is required")
     Tour tour;
 
-    @NotBlank(message = "User is required")
     User user;
 
     @DecimalMin(value = "1")

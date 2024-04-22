@@ -1,10 +1,16 @@
 package com.project.neobis_back_neotour.services.review;
 
 import com.project.neobis_back_neotour.entities.Review;
+import com.project.neobis_back_neotour.entities.Tour;
+import com.project.neobis_back_neotour.entities.User;
 import com.project.neobis_back_neotour.exceptions.ReviewNotFoundException;
+import com.project.neobis_back_neotour.exceptions.TourNotFoundException;
+import com.project.neobis_back_neotour.exceptions.UserNotFoundException;
 import com.project.neobis_back_neotour.models.ReviewDto;
 import com.project.neobis_back_neotour.repositories.ReviewRepository;
 
+import com.project.neobis_back_neotour.repositories.TourRepository;
+import com.project.neobis_back_neotour.repositories.UserRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -21,12 +27,21 @@ import java.util.Optional;
 public class ReviewServiceImpl implements ReviewService {
 
     ReviewRepository reviewRepository;
+    UserRepository userRepository;
+    TourRepository tourRepository;
 
     @Override
     public ReviewDto createReview(ReviewDto reviewDto) {
+
+        User user = userRepository.findById(reviewDto.getUser().getId())
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + reviewDto.getUser().getId(), HttpStatus.NOT_FOUND.value()));
+
+        Tour tour = tourRepository.findById(reviewDto.getTour().getId())
+                .orElseThrow(() -> new TourNotFoundException("Tour not found with id: " + reviewDto.getTour().getId(), HttpStatus.NOT_FOUND.value()));
+
         Review review = Review.builder()
-                .user(reviewDto.getUser())
-                .tour(reviewDto.getTour())
+                .user(user)
+                .tour(tour)
                 .rating(reviewDto.getRating())
                 .comment(reviewDto.getComment())
                 .build();
@@ -62,8 +77,14 @@ public class ReviewServiceImpl implements ReviewService {
             throw new ReviewNotFoundException("Review not found with id: " + id, HttpStatus.NOT_FOUND.value());
         }
 
-        review.setUser(reviewDto.getUser());
-        review.setTour(reviewDto.getTour());
+        User user = userRepository.findById(reviewDto.getUser().getId())
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + reviewDto.getUser().getId(), HttpStatus.NOT_FOUND.value()));
+
+        Tour tour = tourRepository.findById(reviewDto.getTour().getId())
+                .orElseThrow(() -> new TourNotFoundException("Tour not found with id: " + reviewDto.getTour().getId(), HttpStatus.NOT_FOUND.value()));
+
+        review.setUser(user);
+        review.setTour(tour);
         review.setRating(reviewDto.getRating());
         review.setComment(reviewDto.getComment());
 
