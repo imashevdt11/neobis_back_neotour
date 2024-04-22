@@ -33,7 +33,6 @@ public class ReviewDto {
 
     @DecimalMin(value = "1")
     @DecimalMax(value = "5")
-    @NotBlank(message = "Rating is required")
     Integer rating;
 
     String comment;
