@@ -1,17 +1,22 @@
 package com.project.neobis_back_neotour.services.user;
 
 import com.project.neobis_back_neotour.entities.User;
-import com.project.neobis_back_neotour.exceptions.UserNotFoundException;
 import com.project.neobis_back_neotour.models.UserDto;
+import com.project.neobis_back_neotour.mappers.UserMapper;
 import com.project.neobis_back_neotour.repositories.UserRepository;
-import lombok.AccessLevel;
+import com.project.neobis_back_neotour.exceptions.UserNotFoundException;
+
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.http.HttpStatus;
+import lombok.AccessLevel;
+
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -21,43 +26,43 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public UserDto createUser(UserDto userDto) {
+    public UserDto addUser(UserDto userDto) {
         User user = User.builder()
                 .username(userDto.getUsername())
                 .image_url(userDto.getImage_url())
                 .build();
-
         User savedUser = userRepository.save(user);
-        return convertToUserDto(savedUser);
+        return UserMapper.toDto(savedUser);
     }
 
     @Override
     public List<UserDto> getAllUsers() {
-        List<User> userList = userRepository.findAll();
-        return userList.stream().map(this::convertToUserDto).toList();
+        List<User> userList = userRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+        return userList.stream().map(UserMapper::toDto).toList();
     }
 
     @Override
     public UserDto getUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id, HttpStatus.NOT_FOUND.value()));
-        return convertToUserDto(user);
+        return UserMapper.toDto(user);
     }
 
     @Override
     public UserDto updateUser(Long id, UserDto userDto) {
+        Optional<User> optionalUser = userRepository.findById(id);
 
-        UserDto user = getUserById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setUsername(userDto.getUsername());
+            user.setImage_url(userDto.getImage_url());
+            user.setUpdated_at(LocalDateTime.now());
 
-        if (user == null) {
+            User updatedUser = userRepository.save(user);
+            return UserMapper.toDto(updatedUser);
+        } else {
             throw new UserNotFoundException("User not found with id: " + id, HttpStatus.NOT_FOUND.value());
         }
-
-        user.setUsername(userDto.getUsername());
-        user.setImage_url(userDto.getImage_url());
-
-        User updatedUser = userRepository.save(convertToUserEntity(user));
-        return convertToUserDto(updatedUser);
     }
 
     @Override
@@ -69,25 +74,5 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new UserNotFoundException("User not found with id: " + id, HttpStatus.NOT_FOUND.value());
         }
-    }
-
-    public UserDto convertToUserDto(User user) {
-        return UserDto.builder()
-                .id(user.getId())
-                .username(user.getUsername())
-                .image_url(user.getImage_url())
-                .created_at(user.getCreated_at())
-                .updated_at(user.getUpdated_at())
-                .build();
-    }
-
-    public User convertToUserEntity(UserDto user) {
-        return User.builder()
-                .id(user.getId())
-                .username(user.getUsername())
-                .image_url(user.getImage_url())
-                .created_at(user.getCreated_at())
-                .updated_at(user.getUpdated_at())
-                .build();
     }
 }

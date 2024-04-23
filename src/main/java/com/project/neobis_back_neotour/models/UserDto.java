@@ -1,24 +1,26 @@
 package com.project.neobis_back_neotour.models;
 
-import jakarta.validation.constraints.NotBlank;
+import com.project.neobis_back_neotour.base.BaseDto;
+
 import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
+
 import lombok.Data;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+import lombok.AccessLevel;
 
 import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserDto {
-
-    Long id;
+public class UserDto extends BaseDto {
 
     @NotBlank(message = "Username is required")
     @Size(min = 3, max = 30)
@@ -27,7 +29,10 @@ public class UserDto {
     @NotBlank(message = "Image is required")
     String image_url;
 
-    LocalDateTime created_at;
-
-    LocalDateTime updated_at;
+    @Builder
+    public UserDto(Long id, LocalDateTime created_at, LocalDateTime updated_at, String username, String image_url) {
+        super(id, created_at, updated_at);
+        this.username = username;
+        this.image_url = image_url;
+    }
 }
