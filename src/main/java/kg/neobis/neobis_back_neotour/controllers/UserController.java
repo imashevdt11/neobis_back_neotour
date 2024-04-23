@@ -30,7 +30,7 @@ import java.util.List;
 @Tag(name = "User")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequestMapping(EndpointConstants.USER_ENDPOINT)
-@CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
+//@CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
 public class UserController {
 
     UserService userService;
