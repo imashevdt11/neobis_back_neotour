@@ -1,3 +1,7 @@
+cloudinary:
+    cloud-name: dn0akydmv
+    api-key: 883779744122919
+    api-secret: 2q8MUhDG4sUjtN47HZS823Zxjko
 spring:
     datasource:
         url: jdbc:postgresql://localhost:5432/neotour
