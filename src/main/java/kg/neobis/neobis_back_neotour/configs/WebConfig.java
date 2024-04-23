@@ -10,6 +10,9 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
                 .allowedOrigins("http://localhost:3000")
-                .allowedMethods("GET", "POST", "PUT", "DELETE");
+                .allowedMethods("GET");
+        registry.addMapping("/api/bookings/**")
+                .allowedOrigins("http://localhost:3000")
+                .allowedMethods("POST");
     }
 }
