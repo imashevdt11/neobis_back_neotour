@@ -11,10 +11,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.AccessLevel;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -23,6 +20,7 @@ import java.util.Map;
 @Tag(name = "Image")
 @RequestMapping(EndpointConstants.IMAGES_ENDPOINT)
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
 public class ImageController {
 
     ImageService imageService;

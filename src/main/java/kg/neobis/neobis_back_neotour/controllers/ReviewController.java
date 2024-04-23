@@ -34,6 +34,7 @@ import java.util.List;
 @Tag(name = "Review")
 @RequestMapping(EndpointConstants.REVIEW_ENDPOINT)
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
 public class ReviewController {
 
     ReviewService reviewService;
@@ -83,7 +84,6 @@ public class ReviewController {
             description = "getting all reviews for tour",
             responses = @ApiResponse(responseCode = "200", description = "List of reviews for tour retrieved successfully")
     )
-    @CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
     @GetMapping("/tour/{tourId}")
     public ResponseEntity<List<ReviewDto>> getToursReviewsId(@PathVariable Long tourId) {
         List<ReviewDto> reviews = reviewService.getToursReviews(tourId);

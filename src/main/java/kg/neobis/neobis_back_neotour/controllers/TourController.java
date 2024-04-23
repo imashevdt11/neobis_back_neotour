@@ -36,9 +36,9 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @Tag(name = "Tour")
-@CrossOrigin
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequestMapping(EndpointConstants.TOUR_ENDPOINT)
+@CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
 public class TourController {
 
     TourService tourService;
@@ -64,7 +64,6 @@ public class TourController {
             description = "getting all existed tours",
             responses = @ApiResponse(responseCode = "200", description = "List of tours retrieved successfully")
     )
-    @CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
     @GetMapping
     public ResponseEntity<List<TourDto>> getAllTours() {
         List<TourDto> tours = tourService.getAllTours();
@@ -79,7 +78,6 @@ public class TourController {
                     @ApiResponse(responseCode = "500", description = "Internal server error")
             }
     )
-    @CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
     @GetMapping("/{id}")
     public ResponseEntity<TourDto> getTourById(@PathVariable Long id) {
         TourDto tour = tourService.getTourById(id);
@@ -90,7 +88,6 @@ public class TourController {
             description = "getting 5 most popular tours",
             responses = @ApiResponse(responseCode = "200", description = "List of popular tours retrieved successfully")
     )
-    @CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
     @GetMapping("/popular")
     public ResponseEntity<List<TourDto>> getPopularTours() {
         List<TourDto> popularTours = tourService.getPopularTours();
@@ -101,7 +98,6 @@ public class TourController {
             description = "getting 5 tours with biggest average rating",
             responses = @ApiResponse(responseCode = "200", description = "List of popular tours retrieved successfully")
     )
-    @CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
     @GetMapping("/featured")
     public ResponseEntity<List<TourDto>> getFeaturedTours() {
         List<TourDto> featuredTours = tourService.getFeaturedTours();
@@ -112,7 +108,6 @@ public class TourController {
             description = "getting most visited tours",
             responses = @ApiResponse(responseCode = "200", description = "List of most viewed tours retrieved successfully")
     )
-    @CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
     @GetMapping("/most-visited")
     public ResponseEntity<List<TourDto>> getMostVisitedTours() {
         List<TourDto> mostVisitedTours = tourService.getMostVisitedTours();
@@ -127,7 +122,6 @@ public class TourController {
                     @ApiResponse(responseCode = "500", description = "Internal server error")
             }
     )
-    @CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
     @GetMapping("/continent/{continent}")
     public ResponseEntity<List<TourDto>> getToursByContinent(@PathVariable String continent) {
         List<TourDto> tourList = tourService.getToursByContinent(continent);
@@ -142,7 +136,6 @@ public class TourController {
                     @ApiResponse(responseCode = "500", description = "Internal server error")
             }
     )
-    @CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
     @GetMapping("/recommended")
     public ResponseEntity<List<TourDto>> getRecommended() {
         String currentSeason = getCurrentSeason();

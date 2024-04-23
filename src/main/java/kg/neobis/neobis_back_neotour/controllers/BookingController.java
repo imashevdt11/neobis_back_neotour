@@ -30,6 +30,7 @@ import java.util.List;
 @Tag(name = "Booking")
 @RequestMapping(EndpointConstants.BOOKING_ENDPOINT)
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
 public class BookingController {
 
     BookingService bookingService;
@@ -42,7 +43,6 @@ public class BookingController {
                     @ApiResponse(responseCode = "500", description = "Internal server error")
             }
     )
-    @CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
     @PostMapping("/book-tour")
     public ResponseEntity<Object> createBooking(@Valid @RequestBody BookingDto booking, BindingResult result) {
         if (result.hasErrors()) {
