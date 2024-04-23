@@ -14,7 +14,7 @@ public interface TourRepository extends JpaRepository<Tour, Long> {
 
     @Query("SELECT t, COUNT(b.id) AS bookings_count " +
             "FROM Tour t " +
-            "LEFT JOIN Booking b " +
+            "LEFT JOIN Booking b ON t.id = b.tour.id " +
             "GROUP BY t.id " +
             "ORDER BY bookings_count DESC " +
             "LIMIT 5")

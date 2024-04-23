@@ -46,7 +46,7 @@ public class BookingController {
     BookingService bookingService;
 
     @Operation(
-            description = "Create a new review",
+            description = "Book the tour",
             responses = {
                     @ApiResponse(responseCode = "201", description = "Review created successfully"),
                     @ApiResponse(responseCode = "400", description = "Bad request due to validation error"),
