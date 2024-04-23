@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Positive;
 
 import kg.neobis.neobis_back_neotour.commons.EndpointConstants;
 import kg.neobis.neobis_back_neotour.models.BookingDto;
@@ -21,50 +20,41 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Validated
-@AllArgsConstructor
 @RestController
+@AllArgsConstructor
 @Tag(name = "Booking")
-@CrossOrigin
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequestMapping(EndpointConstants.BOOKING_ENDPOINT)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BookingController {
 
     BookingService bookingService;
 
     @Operation(
-            description = "Book the tour",
+            description = "booking a tour",
             responses = {
-                    @ApiResponse(responseCode = "201", description = "Review created successfully"),
+                    @ApiResponse(responseCode = "201", description = "Tour booked successfully"),
                     @ApiResponse(responseCode = "400", description = "Bad request due to validation error"),
                     @ApiResponse(responseCode = "500", description = "Internal server error")
             }
     )
-    @PostMapping("/create")
+    @CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
+    @PostMapping("/book-tour")
     public ResponseEntity<Object> createBooking(@Valid @RequestBody BookingDto booking, BindingResult result) {
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().body("Validation error: " + result.getAllErrors());
         }
-        BookingDto createdBooking = bookingService.createBooking(booking);
+        BookingDto createdBooking = bookingService.bookTour(booking);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBooking);
     }
 
     @Operation(
-            description = "Get all bookings",
-            responses = @ApiResponse(responseCode = "200", description = "List of reviews retrieved successfully")
+            description = "getting all bookings",
+            responses = @ApiResponse(responseCode = "200", description = "List of bookings retrieved successfully")
     )
     @GetMapping
     public ResponseEntity<List<BookingDto>> getAllBookings() {
@@ -73,7 +63,7 @@ public class BookingController {
     }
 
     @Operation(
-            description = "Get booking by ID",
+            description = "getting booking by ID",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Booking retrieved successfully"),
                     @ApiResponse(responseCode = "404", description = "Booking not found"),
@@ -87,25 +77,7 @@ public class BookingController {
     }
 
     @Operation(
-            description = "Update booking by ID",
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Booking updated successfully"),
-                    @ApiResponse(responseCode = "400", description = "Bad request due to validation error"),
-                    @ApiResponse(responseCode = "404", description = "Booking not found"),
-                    @ApiResponse(responseCode = "500", description = "Internal server error")
-            }
-    )
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateBooking(@PathVariable @Positive Long id, @Valid @RequestBody BookingDto booking, BindingResult result) {
-        if (result.hasErrors()) {
-            return ResponseEntity.badRequest().body("Validation error: " + result.getAllErrors());
-        }
-        BookingDto savedBooking = bookingService.updateBooking(id, booking);
-        return ResponseEntity.ok(savedBooking);
-    }
-
-    @Operation(
-            description = "Booking review by ID",
+            description = "deleting booking by ID",
             responses = {
                     @ApiResponse(responseCode = "204", description = "Booking deleted successfully"),
                     @ApiResponse(responseCode = "404", description = "Booking not found"),
