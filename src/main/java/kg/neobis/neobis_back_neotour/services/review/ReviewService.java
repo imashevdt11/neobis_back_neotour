@@ -6,15 +6,13 @@ import java.util.List;
 
 public interface ReviewService {
 
-    ReviewDto createReview(ReviewDto reviewDto);
+    ReviewDto addReview(ReviewDto reviewDto);
 
     List<ReviewDto> getAllReviews();
 
     ReviewDto getReviewById(Long id);
 
-    List<ReviewDto> getReviewsByTourId(Long tourId);
-
-    ReviewDto updateReview(Long id, ReviewDto reviewDto);
+    List<ReviewDto> getToursReviews(Long tourId);
 
     void deleteReview(Long id);
 }

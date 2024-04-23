@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Positive;
 
 import kg.neobis.neobis_back_neotour.commons.EndpointConstants;
 import kg.neobis.neobis_back_neotour.models.ReviewDto;
@@ -24,25 +23,23 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Validated
-@AllArgsConstructor
 @RestController
+@AllArgsConstructor
 @Tag(name = "Review")
-@CrossOrigin
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequestMapping(EndpointConstants.REVIEW_ENDPOINT)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ReviewController {
 
     ReviewService reviewService;
 
     @Operation(
-            description = "Create a new review",
+            description = "adding review",
             responses = {
                     @ApiResponse(responseCode = "201", description = "Review created successfully"),
                     @ApiResponse(responseCode = "400", description = "Bad request due to validation error"),
@@ -54,12 +51,12 @@ public class ReviewController {
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().body("Validation error: " + result.getAllErrors());
         }
-        ReviewDto createdReview = reviewService.createReview(review);
+        ReviewDto createdReview = reviewService.addReview(review);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdReview);
     }
 
     @Operation(
-            description = "Get all reviews",
+            description = "getting all existed reviews",
             responses = @ApiResponse(responseCode = "200", description = "List of reviews retrieved successfully")
     )
     @GetMapping
@@ -69,7 +66,7 @@ public class ReviewController {
     }
 
     @Operation(
-            description = "Get review by ID",
+            description = "getting review by id",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Review retrieved successfully"),
                     @ApiResponse(responseCode = "404", description = "Review not found"),
@@ -83,36 +80,18 @@ public class ReviewController {
     }
 
     @Operation(
-            description = "Get all reviews for tour",
+            description = "getting all reviews for tour",
             responses = @ApiResponse(responseCode = "200", description = "List of reviews for tour retrieved successfully")
     )
     @CrossOrigin(origins = "https://neobis-back-neotour-d00d4638f0fd.herokuapp.com/")
     @GetMapping("/tour/{tourId}")
-    public ResponseEntity<List<ReviewDto>> getReviewsByTourId(@PathVariable Long tourId) {
-        List<ReviewDto> reviews = reviewService.getReviewsByTourId(tourId);
+    public ResponseEntity<List<ReviewDto>> getToursReviewsId(@PathVariable Long tourId) {
+        List<ReviewDto> reviews = reviewService.getToursReviews(tourId);
         return ResponseEntity.ok(reviews);
     }
 
     @Operation(
-            description = "Update review by ID",
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Review updated successfully"),
-                    @ApiResponse(responseCode = "400", description = "Bad request due to validation error"),
-                    @ApiResponse(responseCode = "404", description = "Review not found"),
-                    @ApiResponse(responseCode = "500", description = "Internal server error")
-            }
-    )
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateReview(@PathVariable @Positive Long id, @Valid @RequestBody ReviewDto review, BindingResult result) {
-        if (result.hasErrors()) {
-            return ResponseEntity.badRequest().body("Validation error: " + result.getAllErrors());
-        }
-        ReviewDto savedReview = reviewService.updateReview(id, review);
-        return ResponseEntity.ok(savedReview);
-    }
-
-    @Operation(
-            description = "Delete review by ID",
+            description = "deleting review by id",
             responses = {
                     @ApiResponse(responseCode = "204", description = "Review deleted successfully"),
                     @ApiResponse(responseCode = "404", description = "Review not found"),
