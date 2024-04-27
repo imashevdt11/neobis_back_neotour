@@ -10,6 +10,7 @@ public class BookingMapper {
                 .tour(booking.getTour())
                 .phone_number(booking.getPhone_number())
                 .number_of_tourists(booking.getNumber_of_tourists())
+                .comment(booking.getComment())
                 .created_at(booking.getCreated_at())
                 .updated_at(booking.getUpdated_at())
                 .build();

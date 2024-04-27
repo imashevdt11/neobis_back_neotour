@@ -30,13 +30,13 @@ public class BookingServiceImpl implements BookingService {
     public BookingDto bookTour(BookingDto bookingDto) {
         Tour tour = tourRepository.findById(bookingDto.getTour().getId())
                 .orElseThrow(() -> new TourNotFoundException("Tour not found with id: " + bookingDto.getTour().getId(), HttpStatus.NOT_FOUND.value()));
-        Booking review = Booking.builder()
+        Booking booking = Booking.builder()
                 .tour(tour)
                 .phone_number(bookingDto.getPhone_number())
                 .number_of_tourists(bookingDto.getNumber_of_tourists())
                 .comment(bookingDto.getComment())
                 .build();
-        Booking savedBooking = bookingRepository.save(review);
+        Booking savedBooking = bookingRepository.save(booking);
         return BookingMapper.toDto(savedBooking);
     }
 
