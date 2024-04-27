@@ -8,7 +8,7 @@ import jakarta.validation.Valid;
 
 import kg.neobis.neobis_back_neotour.commons.EndpointConstants;
 import kg.neobis.neobis_back_neotour.models.ReviewDto;
-import kg.neobis.neobis_back_neotour.services.review.ReviewService;
+import kg.neobis.neobis_back_neotour.services.ReviewService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;

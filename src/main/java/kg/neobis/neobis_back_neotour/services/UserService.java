@@ -1,4 +1,4 @@
-package kg.neobis.neobis_back_neotour.services.user;
+package kg.neobis.neobis_back_neotour.services;
 
 
 import kg.neobis.neobis_back_neotour.models.UserDto;

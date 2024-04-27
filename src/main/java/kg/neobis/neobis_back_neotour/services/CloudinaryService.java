@@ -1,4 +1,4 @@
-package kg.neobis.neobis_back_neotour.services.cloudinary;
+package kg.neobis.neobis_back_neotour.services;
 
 import org.springframework.web.multipart.MultipartFile;
 

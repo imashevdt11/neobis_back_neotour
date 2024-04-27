@@ -8,7 +8,7 @@ import jakarta.validation.Valid;
 
 import kg.neobis.neobis_back_neotour.commons.EndpointConstants;
 import kg.neobis.neobis_back_neotour.models.BookingDto;
-import kg.neobis.neobis_back_neotour.services.booking.BookingService;
+import kg.neobis.neobis_back_neotour.services.BookingService;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

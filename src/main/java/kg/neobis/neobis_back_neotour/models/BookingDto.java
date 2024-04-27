@@ -1,5 +1,6 @@
 package kg.neobis.neobis_back_neotour.models;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.DecimalMin;
@@ -27,10 +28,11 @@ public class BookingDto extends BaseDto {
     @DecimalMax(value = "10")
     Integer number_of_tourists;
 
+    @Nullable
     String comment;
 
     @Builder
-    public BookingDto(Long id, LocalDateTime created_at, LocalDateTime updated_at, Tour tour, String phone_number, Integer number_of_tourists, String comment) {
+    public BookingDto(Long id, LocalDateTime created_at, LocalDateTime updated_at, Tour tour, String phone_number, Integer number_of_tourists, @Nullable String comment) {
         super(id, created_at, updated_at);
         this.tour = tour;
         this.phone_number = phone_number;

@@ -1,10 +1,11 @@
-package kg.neobis.neobis_back_neotour.services.image;
+package kg.neobis.neobis_back_neotour.services.impl;
 
 import kg.neobis.neobis_back_neotour.entities.Image;
 import kg.neobis.neobis_back_neotour.models.ImageDto;
 import kg.neobis.neobis_back_neotour.repositories.ImageRepository;
-import kg.neobis.neobis_back_neotour.services.cloudinary.CloudinaryService;
+import kg.neobis.neobis_back_neotour.services.CloudinaryService;
 
+import kg.neobis.neobis_back_neotour.services.ImageService;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.AccessLevel;

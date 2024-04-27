@@ -1,10 +1,11 @@
-package kg.neobis.neobis_back_neotour.services.user;
+package kg.neobis.neobis_back_neotour.services.impl;
 
 import kg.neobis.neobis_back_neotour.entities.User;
 import kg.neobis.neobis_back_neotour.exceptions.UserNotFoundException;
 import kg.neobis.neobis_back_neotour.mappers.UserMapper;
 import kg.neobis.neobis_back_neotour.models.UserDto;
 import kg.neobis.neobis_back_neotour.repositories.UserRepository;
+import kg.neobis.neobis_back_neotour.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.AccessLevel;

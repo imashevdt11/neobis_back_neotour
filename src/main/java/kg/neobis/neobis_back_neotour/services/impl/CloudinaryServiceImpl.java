@@ -1,6 +1,7 @@
-package kg.neobis.neobis_back_neotour.services.cloudinary;
+package kg.neobis.neobis_back_neotour.services.impl;
 
 import jakarta.annotation.Resource;
+import kg.neobis.neobis_back_neotour.services.CloudinaryService;
 import org.springframework.stereotype.Service;
 import com.cloudinary.Cloudinary;
 import org.springframework.web.multipart.MultipartFile;

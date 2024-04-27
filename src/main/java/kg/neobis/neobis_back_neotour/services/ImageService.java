@@ -1,4 +1,4 @@
-package kg.neobis.neobis_back_neotour.services.image;
+package kg.neobis.neobis_back_neotour.services;
 
 import org.springframework.http.ResponseEntity;
 import kg.neobis.neobis_back_neotour.models.ImageDto;

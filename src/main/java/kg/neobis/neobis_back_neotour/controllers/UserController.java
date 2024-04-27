@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Positive;
 
 import kg.neobis.neobis_back_neotour.commons.EndpointConstants;
 import kg.neobis.neobis_back_neotour.models.UserDto;
-import kg.neobis.neobis_back_neotour.services.user.UserService;
+import kg.neobis.neobis_back_neotour.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.AccessLevel;

@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import kg.neobis.neobis_back_neotour.models.ImageDto;
 import kg.neobis.neobis_back_neotour.commons.EndpointConstants;
-import kg.neobis.neobis_back_neotour.services.image.ImageService;
+import kg.neobis.neobis_back_neotour.services.ImageService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

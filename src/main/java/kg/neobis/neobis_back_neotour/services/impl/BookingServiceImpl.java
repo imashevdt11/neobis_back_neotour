@@ -1,4 +1,4 @@
-package kg.neobis.neobis_back_neotour.services.booking;
+package kg.neobis.neobis_back_neotour.services.impl;
 
 import kg.neobis.neobis_back_neotour.entities.Booking;
 import kg.neobis.neobis_back_neotour.entities.Tour;
@@ -8,6 +8,7 @@ import kg.neobis.neobis_back_neotour.mappers.BookingMapper;
 import kg.neobis.neobis_back_neotour.models.BookingDto;
 import kg.neobis.neobis_back_neotour.repositories.BookingRepository;
 import kg.neobis.neobis_back_neotour.repositories.TourRepository;
+import kg.neobis.neobis_back_neotour.services.BookingService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;

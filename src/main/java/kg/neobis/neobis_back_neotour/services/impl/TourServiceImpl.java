@@ -1,10 +1,11 @@
-package kg.neobis.neobis_back_neotour.services.tour;
+package kg.neobis.neobis_back_neotour.services.impl;
 
 import kg.neobis.neobis_back_neotour.entities.Tour;
 import kg.neobis.neobis_back_neotour.exceptions.TourNotFoundException;
 import kg.neobis.neobis_back_neotour.mappers.TourMapper;
 import kg.neobis.neobis_back_neotour.models.TourDto;
 import kg.neobis.neobis_back_neotour.repositories.TourRepository;
+import kg.neobis.neobis_back_neotour.services.TourService;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.AccessLevel;

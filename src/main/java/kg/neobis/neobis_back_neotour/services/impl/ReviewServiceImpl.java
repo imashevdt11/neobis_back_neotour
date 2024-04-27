@@ -1,4 +1,4 @@
-package kg.neobis.neobis_back_neotour.services.review;
+package kg.neobis.neobis_back_neotour.services.impl;
 
 import kg.neobis.neobis_back_neotour.entities.Review;
 import kg.neobis.neobis_back_neotour.entities.Tour;
@@ -11,6 +11,7 @@ import kg.neobis.neobis_back_neotour.models.ReviewDto;
 import kg.neobis.neobis_back_neotour.repositories.ReviewRepository;
 import kg.neobis.neobis_back_neotour.repositories.TourRepository;
 import kg.neobis.neobis_back_neotour.repositories.UserRepository;
+import kg.neobis.neobis_back_neotour.services.ReviewService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
